@@ -1,0 +1,120 @@
+{% extends "layout.html"%}
+
+{% block title %}
+    FPS: Home
+{% endblock %}
+
+{% block main %}
+    <div class="home_section">
+        <div class="user_section">
+            <div class="section" style="background-color: darkblue;">
+                <div style="color: white;" class="text-centred">
+                    <br>
+                    <div class="text-centred">
+                        <h1><u>Welcome</u></h1>
+                        <h1><u>{{session["name"]}}</u></h1>
+                        <br>
+                    </div>            
+                    <div class="mb-3">
+                        <h3>NUMBER OF STUDENTS IN CLASS: {{no_of_students}}</h3>   
+                    </div> 
+
+                    <div class="mb-3">
+                        <h3>AVERAGE SCORE IN CLASS: {{avg_score[0]["avg"]}}</h3>   
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <br>
+                <div class="text-centred">
+                    <h1><u>Progress</u></h1>
+                    <h6>Measure progress of students by: </h6>
+                </div>
+                <div id="inner">
+                    <div class="online">
+                        <form action="/" method="post">
+                            <input type="hidden" value="w-assessment" name="progress">
+                            <button class="reg_but" id="reg_but">Weekly-Assesments</button>
+                        </form>
+                    </div>
+                    <div class="online">
+                        <form action="/" method="post">
+                            <input type="hidden" value="evaluation" name="progress">
+                            <button class="reg_but" id="reg_but">Evaluation Tests</button>
+                        </form>
+                    </div>
+                    <div class="online">
+                        <form action="/" method="post">
+                            <input type="hidden" value="mid-tests" name="progress">
+                            <button class="reg_but" id="reg_but">Mid-Term Tests</button>
+                        </form>
+                    </div>
+                    <div class="online">
+                        <form action="/" method="post">
+                            <input type="hidden" value="exam" name="progress">
+                            <button class="reg_but" id="reg_but">Exam</button>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <div class="text-centred">
+                    <h3><u>Student's progress based on {{i}}</u></h3>
+                </div>
+                <br>
+                <div id="columnchart_values" class="chart"></div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var array = [];
+        array.push(["Element", "Scores", { role: "style" } ]);
+
+        var scores = {{scores|tojson}};
+        if (scores[0][{{type|tojson}}])
+        {
+            for (let i = 0; i < scores.length; i++)
+            {
+                if (scores[i][{{type|tojson}}] > {{max|tojson}} / 2)
+                {
+                    array.push([scores[i]["name"], scores[i][{{type|tojson}}], "green"]);
+                }
+
+                else
+                {
+                    array.push([scores[i]["name"], scores[i][{{type|tojson}}], "red"]);
+                }
+            }
+
+        }
+
+        else
+        {
+            array.push(["No students",0,"red"]);
+        }
+        var data = google.visualization.arrayToDataTable(array);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                         { calc: "stringify",
+                           sourceColumn: 1,
+                           type: "string",
+                           role: "annotation" },
+                         2]);
+  
+        var options = {
+          title: "Each subject is worth: " + {{max|tojson}} + "marks",
+          width: 0,
+          height: 0,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(view, options);
+      }
+    </script>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <section class="user_section">
+        <div class="section">
+            <div id="inner">
+                <br>
+                <div><img src="/static/art/Unknown.png" alt="Sorry could't load the image" width="50%"></div>
+                <h1>Register</h1>
+                <p>Register as a teacher in F.P.S</p>
+                <br>
+                <hr>
+                <br>
+                <div>
+                    <form action="/register" method="post">
+                        <h6>FirstName*</h6>
+                        <div class="mb-3">
+                            <input type="text" placeholder="FirstName" name="f-name" required>
+                        </div>
+                        <h6>MiddleName*</h6>
+                        <div class="mb-3">
+                            <input type="text" placeholder="MiddleName" name="m-name" required>
+                        </div>
+                        <h6>LastName*</h6>
+                        <div class="mb-3">
+                            <input type="text" placeholder="LastName" name="l-name" required>
+                        </div>
+                        <h6>Email*</h6>
+                        <div class="mb-3">
+                            <input type="text" placeholder="mail@gmail.com" name="email" required>
+                        </div>
+
+                        <h6>Password*</h6>
+                        <div class="mb-3">
+                            <input type="password" placeholder="Password" name="password" id="password" required>
+                        </div>
+                        <h6>Confirm Password*</h6>
+                        <div class="mb-3">
+                            <input type="password" placeholder="Password(again)" name="confirmation" id="password2" required>
+                        </div>
+                        <div class="mb-3">
+                            <h6>School's Key*</h6>
+                            <input type="text" name="key" placeholder="Enter Key" id="sch_key" required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <button class="reg_but" id="reg_but"><b>Next Step</b></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-5 small">Already have an account? <a href="/login">Sign in</a></div>
+            </div>
+            <br>
+        </div>
+        <div class="section" id="back">
+        </div>  
+        <br>
+    </section>
+
+    <script>
+        // TODO
+        document.querySelector("#reg_but").addEventListener("click", function(e){
+            let key = document.querySelector("#sch_key");
+            if (key.value != "F.P.S00179SCHxyU3422*tyeUdyTEQKVNjndq")
+            {
+                alert("Key is incorrect");
+                e.preventDefault();
+            }
+
+            let password = document.querySelector("#password");
+            let password2 = document.querySelector("#password2");
+
+            if (password.value != password2.value)
+            {
+                alert("Passwords don't match");
+                e.preventDefault();
+            }
+        });
+
+    </script>
+{% endblock %}

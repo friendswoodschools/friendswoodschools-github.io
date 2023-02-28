@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    FPS: Generate results
+{% endblock %}
+
+{% block main %}
+    <div class="about_page" style="padding: 5px;">
+        <br>
+        <div>
+            <div class="text-centred">
+                <h1>Generate and Release Results for all classes</h1>
+                <strong><i>Choose report card template*</i></strong>
+            </div>
+        </div>
+        <section class="about_section">
+            <div class="section" style="padding: 20px;">
+                <div>
+                    <form action="/results" method="get" class="mb-3">
+                        <div class="mb-3">
+                            <h6>School Term*</h6>
+                            <select name="term" id="term">
+                                <option disabled selected>Select a school term</option>
+                                {% for i in terms %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+    
+                        <div class="mb-3">
+                            <h6>Test Type*</h6>
+                            <select name="test_type" id="test_type">
+                                <option disabled selected>Select a test type</option>
+                                {% for i in test_types %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+    
+                        <div class="mb-3">
+                            <h6>Schools Address*</h6>
+                            <input type="text" autofocus placeholder="Enter your branch's address" name="address" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <h6>Schools Contact*</h6>
+                            <input type="tel" autofocus placeholder="Enter your branch's contact" name="contact" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Max Scores For Primary*</h6>
+                            <div class="mb-3">
+                                <input type="number" autofocus placeholder="Max midterm score" name="pmidterm" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="number" autofocus placeholder="Max exam score" name="pexam" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Max Scores For Secondary*</h6>
+                            <div class="mb-3">
+                                <input type="number" autofocus placeholder="Max midterm score" name="smidterm" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="number" autofocus placeholder="Max exam score" name="sexam" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button id="generate">Generate Results</button>
+                        </div>
+                        <div class="mb-3">
+                            <button id="release">Release Results</button>     
+                        </div>
+
+                        <input type="hidden" value="generate" name="option" id="option" required>
+                    </form>
+                    <form action="/results" method="get" class="mb-3">
+                        <input type="hidden" value="release" name="option" required>
+                    </form>
+                </div>
+            </div>  
+            <div class="section" style="background: darkblue;"></div>  
+        </section>
+        <br>
+    </div>
+
+    
+<script>
+    let generate = document.querySelector("#generate");
+    let release = document.querySelector("#release");
+    let option = document.querySelector("#option")
+
+    generate.addEventListener("input",function(){
+        option.value = "generate";
+    });
+
+    release.addEventListener("input", function(){
+        option.value = "release";
+    });
+</script>
+{% endblock %}

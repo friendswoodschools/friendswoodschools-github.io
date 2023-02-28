@@ -1,0 +1,6 @@
+Key To Grades
+70 - 100 = A | 5 Grade Points | Excellent
+60 - 69 = B | 4 Grade Points | Very Good
+50 - 59 = C | 3 Grade Points | Good
+40 - 49 = D | 2 Grade Points | Pass
+0 - 39 = F | 1 Grade Points | Fail

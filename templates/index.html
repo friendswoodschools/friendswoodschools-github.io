@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    FPS: Home
+{% endblock %}
+
+{% block main %}
+    <div class="home_section">
+        <section class="sect1">
+            <div>
+                <div><img src="/static/art/Unknown.png" alt="Sorry could't load the image" width="25%"></div>
+                <h1>Welcome to the home of </h1>
+                <h1>Friendswood Private Schools</h1>
+                <h5>This is the official home of Friendswood Private School where we groom the leaders of tomorrow</h5>
+                <span><a href="/enquiries"><button class="reg_but" id="button">Make Enquiries</button></a>
+                </span>
+                <span><a href="/enroll"><button class="external_reg" id="button">Enroll your child</button></a></span>
+            </div>
+        </section>
+        <section class="sect">
+            <h5 class="text-centred"><b>Meet some of our staff</b></h5>
+            <div class="user_section">
+                {% for i in teachers %}
+                <div class="portfolio">
+                    <div><img src='/static/art/fps/post1.jpg' alt="Sorry could't load the image"></div>
+                    <div class="text">
+                        <div class="Buttons"><b>{{i["name"]}}</b></div>
+                        <div><b>Role: {{i["role"]}}</b></div>
+                        <div><b>Branch: F.P.S {{i["branch"]}}</b></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <br>
+
+        <section class="sect">
+            <h5 class="text-centred"><b>Some of our services include:</b></h5>
+            <div class="user_section">
+                <div class="portfolio">
+                    <div><img src="/static/art/fps/post1.jpg" alt="Sorry could't load the image"></div>
+                    <div class="text">
+                        <div class="Buttons"><b>AFTER SCHOOL LESSONS</b></div>
+                        <div>FPS provide numerous after school lessons and programs</div>
+                    </div>
+                </div>
+                <div class="portfolio">
+                    <div><img src="/static/art/fps/post1.jpg" alt="Sorry could't load the image"></div>
+                    <div class="text">
+                        <div class="Buttons"><b>EXTRA-CURRICULAR ACTIVITIES</b></div>
+                        <div>FPS provide numerous after school lessons and programs</div>
+                    </div>
+                </div>
+                <div class="portfolio">
+                    <div><img src="/static/art/fps/post1.jpg" alt="Sorry could't load the image"></div>
+                    <div class="text">
+                        <div class="Buttons"><b>AFTER SCHOOL LESSONS</b></div>
+                        <div>FPS provide numerous after school lessons and programs</div>
+                    </div>
+                </div>
+                <div class="portfolio">
+                    <div><img src="/static/art/fps/post1.jpg" alt="Sorry could't load the image"></div>
+                    <div class="text">
+                        <div class="Buttons"><b>AFTER SCHOOL LESSONS</b></div>
+                        <div>FPS provide numerous after school lessons and programs</div>
+                    </div>
+                </div>
+                <div class="portfolio">
+                    <div><img src="/static/art/fps/post1.jpg" alt="Sorry could't load the image"></div>
+                    <div class="text">
+                        <div class="Buttons"><b>AFTER SCHOOL LESSONS</b></div>
+                        <div>FPS provide numerous after school lessons and programs</div>
+                    </div>
+                </div>
+                <div class="portfolio">
+                    <div><img src="/static/art/fps/post1.jpg" alt="Sorry could't load the image"></div>
+                    <div class="text">
+                        <div class="Buttons"><b>AFTER SCHOOL LESSONS</b></div>
+                        <div>FPS provide numerous after school lessons and programs</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

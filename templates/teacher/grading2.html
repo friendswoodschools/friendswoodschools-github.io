@@ -1,0 +1,53 @@
+{% extends "layout.html"%}
+
+{% block title %}
+    FPS: Grade Students
+{% endblock %}
+
+{% block main %}
+<div class="about_page">
+    <div class="about_section">
+        <div class="section">
+            <div id="inner">
+                <div>
+                    <br>
+                    <form action="/scoring" method="post">
+                        <div class="mb-3">
+                            <input type="hidden" value='{{test_type}}' name="test_type">
+                            <input type="hidden" value='{{subject}}' name="subject">
+                            <input type="hidden" value='{{section}}' name="section">
+                            <input type="hidden" value='{{students[0]["class"]}}' name="class">
+                            <input type="hidden" value='{{students[0]["branch"]}}' name="branch">
+                        </div>
+                        {% for i in students %}
+                        <div class="mb-3">
+                            <h6>Students details</h6>
+                            <div class="mb-3">
+                                <input type="hidden" value='{{i["id"]}}' name="id">
+                            </div>
+                            <div class="mb-3">
+                                <input type="hidden" value='{{i["name"]}}' style="background-color: lightblue;" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <input disabled type="text" value='{{i["name"]}}' style="background-color: lightblue;">
+                            </div>
+                            <div class="mb-3">
+                                <input type="number" placeholder="{{subject}} Score" name="score">
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <button class="reg_but">Input Grades</button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <span class="section" id="back">
+        </span>   
+    </div>
+</div>
+
+<script>
+</script>
+{% endblock %}

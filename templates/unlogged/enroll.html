@@ -1,0 +1,351 @@
+{% extends "layout.html"%}
+
+{% block title %}
+    FPS: Enroll
+{% endblock %}
+
+{% block main %}
+<div class="about_page">
+    <div class="enroll_outer">
+        <div class="about">
+            <h1>FRIENDSWOOD PRIVATE SCHOOLS</h1>
+            <h6>Enroll your kids today and take the first steps in ensuring they are ready for the future</h6>
+        </div>
+    </div>
+
+    
+    <div class="about_section">
+        <div class="section">
+            <div id="inner">
+                <div>
+                    <br>
+                    <form action="/enroll" method="post">
+                        <div>
+                            <datalist id="classes">
+                                {% for i in pry_classes %}
+                                    <option value="{{i}}">
+                                {% endfor %}
+                                {% for i in sec_classes %}
+                                    <option value="{{i}}">
+                                {% endfor %}
+                            </datalist>
+                        </div>
+                        <div class="mb-3">
+                            <h6>Relationship to the ward*</h6>
+                            <select name="relation" id="select">
+                                <option disabled selected>Relation</option>
+                                {% for i in relationship %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!--Hidden Items-->
+                        <div id="guardian" class="mb-3" hidden>
+                            <h6>Guardian's Details</h6>
+                            <div class="mb-3">
+                                <input type="text" placeholder="FullName" name="guard_name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" placeholder="Password" name="guard_pass">
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" placeholder="Contact No" name="guard_no">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" placeholder="Email Address" name="guard_email">
+                            </div>
+                            <div class="mb-3">
+                                <input type="file" name="guard_img">
+                            </div>
+                        </div>
+
+                        <div class="parent" hidden>
+                            <h6>Parent1 Details</h6>
+                            <h6>Fill in at least one of the 2</h6>
+                            <div class="mb-3">
+                                <input type="text" placeholder="FullName" name="parent_name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" placeholder="Password" name="parent_pass">
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" placeholder="Contact No" name="parent_no">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" placeholder="Email Address" name="parent_email">
+                            </div>
+                        </div>
+
+                        <div class="parent" hidden>
+                            <h6>Parent2 Details</h6>
+                            <div class="mb-3">
+                                <input type="text" placeholder="FullName" name="parent_name">
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" placeholder="Password" name="parent_pass">
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" placeholder="Contact No" name="parent_no">
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" placeholder="Email Address" name="parent_email">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>How many kids do you want to register</h6>
+                            <input type="number" placeholder="E.g: 1" id="kids" name="number">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <span class="section" id="back">
+        </span>   
+    </div>
+</div>
+
+<script>
+    let branch = document.querySelector("#kids");
+    branch.addEventListener("input",function(){
+        if (branch.value < 0)
+        {
+            branch.value = 0;
+
+        }
+
+    });
+    document.querySelector("#select").addEventListener("click",function(){
+        let option = document.querySelector("#select");
+
+        if (option.value == "Guardian")
+        {
+            document.querySelector("#guardian").hidden = 0;
+            let value = document.querySelectorAll(".parent");
+            for (let i = 0; i < 2; i++)
+            {
+                value[i].hidden = 1;
+            }
+        }
+
+        else if (option.value == "Parents")
+        {
+            document.querySelector("#guardian").hidden = 1;
+            let value = document.querySelectorAll(".parent");
+            for (let i = 0; i < 2; i++)
+            {
+                value[i].hidden = 0;
+            }
+        }
+    });
+
+    document.querySelector("#kids").addEventListener("input",function(){
+        let form = document.querySelector("form");
+        let number = document.querySelector("#kids");
+
+        let items = document.querySelectorAll(".cl-items");
+        for (let i = 0; i < items.length; i++)
+        {
+            items[i].remove();
+        }
+
+
+        if (number.value > 1)
+        {
+            for (let i = 0; i < number.value; i++)
+            {
+
+                // Creating main container with js
+                let main_div = document.createElement("div");
+                main_div.setAttribute("class", "mb-3");
+
+                let details = document.createElement("h6");
+                details.innerHTML = "Ward" + (i + 1) + " Details";
+                details.setAttribute("class", "cl-items");
+                main_div.append(details);
+
+                 // Creating name field with js
+                let input = document.createElement("input");
+                input.setAttribute("type", "text");
+                input.setAttribute("placeholder", "FirstName");
+                input.setAttribute("class", "cl-items");
+                input.setAttribute("name", "f-name");
+                input.setAttribute("required", 1);
+
+
+                // Appending inputr to main container
+                main_div.append(input);
+
+                let input6 = document.createElement("input");
+                input6.setAttribute("type", "text");
+                input6.setAttribute("placeholder", "MiddleName");
+                input6.setAttribute("class", "cl-items");
+                input6.setAttribute("name", "m-name");
+                input6.setAttribute("required", 1);
+
+                // Appending inputr to main container
+                main_div.append(input6);
+
+                let input7 = document.createElement("input");
+                input7.setAttribute("type", "text");
+                input7.setAttribute("placeholder", "LastName");
+                input7.setAttribute("class", "cl-items");
+                input7.setAttribute("name", "l-name");
+                input7.setAttribute("required", 1);
+
+                // Appending inputr to main container
+                main_div.append(input7);
+
+                // Creating name field with js
+                let input2 = document.createElement("input");
+                input2.setAttribute("type", "text");
+                input2.setAttribute("placeholder", "Password");
+                input2.setAttribute("class", "cl-items");
+                input2.setAttribute("name", "password");  
+                input2.setAttribute("required", 1);      
+
+                // Appending 2nd input to main container
+                main_div.append(input2);
+
+                // Creating name field with js
+                let input3 = document.createElement("input");
+                input3.setAttribute("type", "number");
+                input3.setAttribute("placeholder", "Branch E.g: 1");
+                input3.setAttribute("class", "cl-items");
+                input3.setAttribute("name", "branch");
+                input3.setAttribute("required", 1);
+
+                // Appending 3rd input to main container
+                main_div.append(input3);
+
+                // Creating name field with js
+                let input4 = document.createElement("input");
+                input4.setAttribute("placeholder", "Class");
+                input4.setAttribute("list", "classes");
+                input4.setAttribute("class", "cl-items");
+                input4.setAttribute("name", "class");  
+                input4.setAttribute("required", 1);    
+
+                // Appending 2nd input to main container
+                main_div.append(input4);
+
+                let input5 = document.createElement("input");
+                input5.setAttribute("type", "date");
+                input5.setAttribute("placeholder", "DOB");
+                input5.setAttribute("class", "cl-items");
+                input5.setAttribute("name", "dob");  
+                input5.setAttribute("required", 1);    
+
+                // Appending 2nd input to main container
+                main_div.append(input5);
+
+
+                let input8 = document.createElement("input");
+                input8.setAttribute("type", "file");
+                input8.setAttribute("class", "cl-items");
+                input8.setAttribute("name", "img");     
+                input8.setAttribute("required", 1);   
+
+                // Appending 2nd input to main container
+                main_div.append(input8);
+                form.append(main_div);
+            }
+            let button = document.createElement("button");
+
+            button.setAttribute("class","cl-items");
+            button.innerHTML = "Enroll";
+
+            form.append(button);
+        }
+
+        else if (number.value == 1)
+        {
+            for (let i = 0; i < number.value; i++)
+            {
+
+                // Creating main container with js
+                let main_div = document.createElement("div");
+                main_div.setAttribute("class", "mb-3");
+
+                let details = document.createElement("h6");
+                details.innerHTML = "Ward Details";
+                details.setAttribute("class", "cl-items");
+                main_div.append(details);
+
+                 // Creating name field with js
+                let input = document.createElement("input");
+                input.setAttribute("type", "text");
+                input.setAttribute("placeholder", "FullName");
+                input.setAttribute("class", "cl-items");
+                input.setAttribute("name", "f-name");
+                input.setAttribute("required", 1);
+
+                // Appending inputr to main container
+                main_div.append(input);
+
+                // Creating name field with js
+                let input2 = document.createElement("input");
+                input2.setAttribute("type", "password");
+                input2.setAttribute("placeholder", "Password");
+                input2.setAttribute("class", "cl-items");
+                input2.setAttribute("name", "password");   
+                input2.setAttribute("required", 1);   
+
+                // Appending 2nd input to main container
+                main_div.append(input2);
+
+                // Creating name field with js
+                let input3 = document.createElement("input");
+                input3.setAttribute("type", "number");
+                input3.setAttribute("placeholder", "Branch E.g: 1");
+                input3.setAttribute("class", "cl-items");
+                input3.setAttribute("name", "branch");
+                input3.setAttribute("required", 1);
+
+                // Appending 3rd input to main container
+                main_div.append(input3);
+                
+                // Creating name field with js
+                let input4 = document.createElement("input");
+                input4.setAttribute("list", "classes");
+                input4.setAttribute("placeholder", "Class");
+                input4.setAttribute("class", "cl-items");
+                input4.setAttribute("name", "class");    
+                input4.setAttribute("required", 1);  
+
+                // Appending 2nd input to main container
+                main_div.append(input4);
+
+                let input5 = document.createElement("input");
+                input5.setAttribute("type", "date");
+                input5.setAttribute("class", "cl-items");
+                input5.setAttribute("name", "dob");        
+                input5.setAttribute("required", 1);
+
+                // Appending 2nd input to main container
+                main_div.append(input5);
+
+                let input6 = document.createElement("input");
+                input6.setAttribute("type", "file");
+                input6.setAttribute("class", "cl-items");
+                input6.setAttribute("name", "img");        
+                input6.setAttribute("required", 1);
+
+                // Appending 2nd input to main container
+                main_div.append(input6);
+
+                form.append(main_div);
+            }
+            let button = document.createElement("button");
+
+            button.setAttribute("class","cl-items");
+            button.innerHTML = "Enroll";
+
+            form.append(button);
+
+        }
+    });
+</script>
+{% endblock %}

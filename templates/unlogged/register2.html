@@ -1,0 +1,235 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <section class="user_section">
+        <div class="section">
+            <div id="inner">
+                <br>
+                <div><img src="/static/art/Unknown.png" alt="Sorry could't load the image" width="50%"></div>
+                <h1>Register</h1>
+                <p>Register as a teacher in F.P.S</p>
+                <br>
+                <hr>
+                <br>
+                <div>
+                    <form action="/validate" method="post">
+                        <div>
+                            <input type="hidden" value="{{email}}" name="email">
+                            <input type="hidden" value="{{password}}" name="password">
+                            <input type="hidden" value="{{fullname}}" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <h6>Upload an image of yourself*</h6>
+                            <input type="file" name="img">
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Branch*</h6>
+                            <input type="number" name="branch" placeholder="E.g: 1" id="branch">
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>Where you assigned to a class*</h6>
+                            <select name="option" id="select">
+                                <option disabled selected>Select suitable option</option>
+                                {% for i in options %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!--Hidden class-->
+                        <div class="mb-3" id="sec" hidden>
+                            <h6>Section*</h6>
+                            <select name="section" id="section">
+                                <option disabled selected>Section</option>
+                                {% for i in sections %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3" id="pry_class" hidden>
+                            <h6>Class*</h6>
+                            <select name="class">
+                                <option disabled selected>Class</option>
+                                {% for i in pry_classes %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3" id="sec_class" hidden>
+                            <h6>Class*</h6>
+                            <select name="class">
+                                <option disabled selected>Class</option>
+                                {% for i in sec_classes %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3" id="class_key" hidden>
+                            <h6>Input class key*</h6>
+                            <input type="text" name="key" placeholder="Class Key" id="key">
+                        </div>
+                        <div class="mb-3">
+                            <h6>What role do you play*</h6>
+                            <select name="role" id="role">
+                                <option disabled selected>Role</option>
+                                {% for i in roles %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3" hidden id="admin">
+                            <h6>Input your admin key*</h6>
+                            <input type="text" placeholder="Key" name="ad-key">
+                        </div>
+
+                        <span class="mb-3">
+                            <input type="checkbox" required>
+                        </span>
+                        <span class="mb-5 small">I agree to the <a href="">Terms & Conditions</a></span>
+                        <div class="mb-3">
+                            <button class="reg_but" id="reg_but"><b>Register</b></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-5 small">Already have an account? <a href="/login">Sign in</a></div>
+            </div>
+            <br>
+        </div>
+
+        <div class="section" id="back">
+        </div>      
+    </section>
+
+    <script>
+        let branch = document.querySelector("#branch");
+        branch.addEventListener("input",function(){
+            if (branch.value < 0)
+            {
+                branch.value = 0;
+
+            }
+
+        });
+
+        // Check select value
+        let select = document.querySelector("#select");
+        let section = document.querySelector("#sec");
+        select.addEventListener("click",function(){
+            if (select.value == "YES")
+            {
+                section.hidden = 0;
+            }
+                
+            else
+            {
+                section.hidden = 1;   
+                document.querySelector("#pry_class").hidden = 1;
+                document.querySelector("#sec_class").hidden = 1;
+                document.querySelector("#class_key").hidden = 1;  
+            }
+        });
+
+        select.addEventListener("input",function(){
+            if (select.value == "YES")
+            {
+                section.hidden = 0;
+            }
+                
+            else
+            {
+                section.hidden = 1;   
+                document.querySelector("#pry_class").hidden = 1;
+                document.querySelector("#sec_class").hidden = 1;
+                document.querySelector("#class_key").hidden = 1;  
+            }
+        });
+        document.querySelector("form").addEventListener("submit",function(e){
+            let key = document.querySelector("#key");
+            if (select.value == "YES" && key.value != "Class-Key")
+            {
+                alert("Key is incorrect");
+                e.preventDefault();
+
+            }
+        });
+
+        let role = document.querySelector("#role");
+        role.addEventListener("click",function(){
+            let admin = document.querySelector("#admin")
+            if (role.value == "Admin")
+            {
+                admin.hidden = 0;
+            }
+
+            else if (role.value == "Staff")
+            {
+                admin.hidden = 1;
+            }
+            
+            else
+            {
+                admin.hidden = 1;
+            }
+        });
+
+        let sec = document.querySelector("#section");
+        sec.addEventListener("click", function(){
+                if (sec.value == "Primary")
+                {
+                    document.querySelector("#pry_class").hidden = 0;
+                    document.querySelector("#sec_class").hidden = 1;
+                    document.querySelector("#class_key").hidden = 0;
+                }
+
+                else if (sec.value == "Secondary")
+                {
+                    document.querySelector("#pry_class").hidden = 1;
+                    document.querySelector("#sec_class").hidden = 0;
+                    document.querySelector("#class_key").hidden = 0;
+                }
+
+
+                else
+                {
+                    document.querySelector("#pry_class").hidden = 1;
+                    document.querySelector("#sec_class").hidden = 1;
+                    document.querySelector("#class_key").hidden = 1;
+                }
+            });
+
+        sec.addEventListener("input", function(){
+                if (sec.value == "Primary")
+                {
+                    document.querySelector("#pry_class").hidden = 0;
+                    document.querySelector("#sec_class").hidden = 1;
+                    document.querySelector("#class_key").hidden = 0;
+                }
+
+                else if (sec.value == "Secondary")
+                {
+                    document.querySelector("#pry_class").hidden = 1;
+                    document.querySelector("#sec_class").hidden = 0;
+                    document.querySelector("#class_key").hidden = 0;
+                }
+
+
+                else
+                {
+                    document.querySelector("#pry_class").hidden = 1;
+                    document.querySelector("#sec_class").hidden = 1;
+                    document.querySelector("#class_key").hidden = 1;
+                }
+            });
+        
+
+    </script>
+{% endblock %}

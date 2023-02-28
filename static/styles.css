@@ -1,0 +1,514 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .blue
+{
+    color: darkblue;
+}
+
+.img
+{
+    max-width: 100%;
+}
+
+
+footer
+{
+    padding: 20px;
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+}
+
+
+
+/* Style Login and register section */
+.section
+{
+    box-shadow: 1px 0 10px rgba(66, 133, 244, .3);
+    background-color: white;
+    width: 50%;
+    padding: 30px;
+}
+
+.user_section
+{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+#inner
+{
+    padding: 40px;
+}
+
+.trans
+{
+    color: transparent;
+}
+
+.user_section img
+{
+    height: 100%;
+}
+
+form input,form button
+{
+    width: 100%;
+}
+
+
+button,input
+{
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/* Style button for register and signup page*/
+
+#button
+{
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid grey; 
+}
+
+.reg_but
+{
+    background: linear-gradient(to right, darkblue, green);
+    color: white;
+    margin: 10px 0px;
+}
+
+.external_reg
+{
+    background-color: white;
+    margin: 5px 0px;;
+}
+
+/* Style header */
+.head_nav
+{
+    background-color: darkblue;
+    padding: 10px;
+}
+
+
+.head_nav a:hover
+{
+    color: lightgreen;
+}
+
+ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*Styling header button*/
+#head_but
+{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+body
+{
+    background: darkblue;
+}
+
+/* Style external sign up buttons*/
+.container2
+{
+    margin: 10px 0px;
+}
+.g-sign-in-button
+{
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+    transition: background-color .218s, border-color .218s, box-shadow .218s;
+}
+
+.g-sign-in-button:hover
+{
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 3px 3px rgba(66, 133, 244, .3);
+    box-shadow: 0 0 3px 3px rgba(66, 133, 244, .3);
+}
+
+.g-sign-in-button:active
+{
+    background-color: #3367D6;
+    transition: background-color .2s;
+}
+
+.g-sign-in-button .content-wrapper
+{
+    height: 100%;
+    width: 100%;
+    border: 1px solid transparent;
+}
+
+.g-sign-in-button img
+{
+    width: 30px;
+    height: 30px;
+}
+
+.g-sign-in-button .logo-wrapper
+{
+    padding: 10px;
+    width: 48px;
+    height: 100px;
+    display: inline-block;
+}
+
+.g-sign-in-button .text-container
+{
+    font-family: "Roboto", arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: .21px;
+    font-size: 16px;
+    line-height: 48px;
+    vertical-align: top;
+    border: none;
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+}
+
+/* Style home */
+.home_section
+{
+    padding: 60px;
+    background-color: white;
+}
+
+.home_section button:hover
+{
+    color: white;
+    background-color: darkblue;
+}
+
+option
+{
+    color: white;
+    background-color: #333333;
+}
+
+.text-centred
+{
+    text-align: center;
+}
+
+.portfolio
+{
+    background-color: white;
+    text-align: center;
+    box-shadow: 1px 0 3px rgba(66, 133, 244, .3);
+    margin: 20px 10px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    font-size: medium;
+    color: rgb(80, 80, 80, 0.5);
+}
+
+.portfolio:hover
+{
+    background-color: darkblue;
+    color: white;
+}
+
+
+.portfolio img
+{
+    width: 100%;
+    border-radius: 50%;
+    border: 2px solid  rgba(66, 133, 244, .3);
+}
+
+.sect
+{
+    margin: 20px 0px;
+}
+
+.Buttons
+{
+    background-color: white;
+    border:  1px solid rgb(80, 80, 80, 0.5);
+    border-radius: 20px;
+    padding: 10px;
+    width: fit-content;
+    max-width: 100%;
+    text-align: center;
+    font-size: medium;
+    color: black;
+}
+
+/* Styling about page*/
+.about_page
+{
+    background: white;
+}
+
+.about_outer
+{
+    background-image: url(art/book2.jpg);
+    background-size: cover;
+}
+
+.about
+{
+    background-color: rgba(0, 0, 255, 0.25);
+    color: white;
+    padding: 60px;
+}
+
+.about_section
+{
+    padding: 80px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about_section img
+{
+    height: 100%;
+}
+
+button
+{
+    border: 1px solid grey;
+}
+
+
+#padding
+{
+    padding: 80px;
+}
+
+/* Style ID page*/
+.id_page
+{
+    background-color: white;
+    padding: 80px;
+}
+
+#profile
+{
+    margin: 0;
+    padding: 10px;
+    border-radius: 40px;
+    background-color: white;
+    color: grey;
+}
+
+/*Style enroll page*/
+.enroll_outer
+{
+    background-image: url(art/pencils.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+#back
+{
+    background-color: darkblue;
+}
+
+.cl-items
+{
+    margin: 10px 0px;
+}
+
+#inner2
+{
+    text-align: center;
+}
+.grade_section
+{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.online
+{
+    align-content: flex-start;
+}
+
+#columnchart_values
+{
+    width: 100%;
+}
+
+
+/*Styling enquiries page*/
+.enq_section
+{
+    align-content: flex-start;
+    width: 20%;
+}
+
+.enq_sections
+{
+    align-content: flex-start;
+    width: 60%;
+}
+
+textarea, .enq_sections input
+{
+    background-color: white;
+    color: #666666;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    outline: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+    width: 100%;
+    transition: all 0.2s;
+    padding: 5px;
+}
+
+textarea:hover, input:hover
+{
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+textarea:focus, input:focus
+{
+    cursor: text;
+    color: #333333;
+    background-color: white;
+    border-color: #333333;
+}
+
+/*Styling reset page*/
+.element
+{
+    background-color: white;
+    padding: 30px;
+    margin: 10% 0px;
+}
+
+.element input,select
+{
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    width: 100%;
+}
+
+.about_outer2
+{
+    background-image: url(art/dark.jpg);
+    background-size: cover;
+}
+
+.dropdown a:hover
+{
+    color: darkblue;
+}
+
+/*Styling settings page*/
+.butlink
+{
+    background-color: transparent; 
+    border: none
+}
+
+.textarea
+{
+    padding: 1em;
+    height: 100px;
+}
+
+button
+{
+    cursor: pointer;
+}
+
+input
+{
+    background-color: white;
+    color: #666666;
+    border: 1px solid grey;
+    outline: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: all 0.2s;
+}
+
+@media (max-width: 700px) 
+{
+    .portfolio
+    {
+        padding: 10px;
+        width: 40%;
+        height: 200px;
+        font-size: smaller;
+    }
+
+    h1
+    {
+        font-size: large;
+    }
+
+    h5
+    {
+        font-size: small;
+    }
+
+    .user_section
+    {
+        font-size: small;
+        justify-content: left;
+    }
+
+    .section
+    {
+        width: 100%;
+        font-size: small;
+    }
+
+    .Buttons
+    {
+        font-size: smaller;
+    }
+
+}
+
+@media (max-width: 400px) 
+{
+    #button
+    {
+        width: 100%;
+    }
+    
+}

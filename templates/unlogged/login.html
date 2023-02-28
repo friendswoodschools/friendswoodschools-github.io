@@ -1,0 +1,59 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <section class="user_section">
+        <div class="section">
+            <div>
+                <br>
+                <div><img src="/static/art/Unknown.png" alt="Sorry could't load the image" width="50%"></div>
+                <h1>Login</h1>
+                <p>Login as a user on the site</p>
+                <br>
+                <hr>
+                <br>
+                <div>
+                    <form action="/login" method="post">
+                        <h6>Name*</h6>
+                        <div class="mb-3">
+                            <input type="text" placeholder="Name" name="name" required>
+                        </div>
+                        <h6>Password*</h6>
+                        <div class="mb-3">
+                            <input type="password" placeholder="Password" name="password" required>
+                        </div>
+                        <h6>Select user category</h6>
+                        <div class="mb-3">
+                            <select name="category">
+                                <option disabled selected>User Categories</option>
+                                {% for i in user_cat %}
+                                    <option>{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <h6>User ID*</h6>
+                        <div class="mb-3">
+                            <input type="text" placeholder="Enter ID" name="id" required>
+                        </div>
+                        <div class="mb-3">
+                            <button class="reg_but"><b>Login</b></button>
+                        </div>
+                    </form>
+                    <span class="mb-5 small">Not registered yet? <a href="/register">Create a new account</a> or <a href="/reset">Forgot your password</a></span>
+                    <br>
+                    <br>
+                    <h1 class="trans">ffhfhfh</h1>
+                    <h1 class="trans">ffhfhfh</h1>
+                    <h1 class="trans">ffhfhfh</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="back">
+        </div>   
+    </section>
+{% endblock %}
+

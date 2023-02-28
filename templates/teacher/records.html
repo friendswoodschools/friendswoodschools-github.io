@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    FPS: Student Records
+{% endblock %}
+
+{% block main%}
+    <div class="home_section">
+        <section class="sect">
+            {% if session["role"] == "Staff" %}
+                <h1 class="text-centred"><b><u>Student Records for {{session["user_class"]}} class</u></b></h1>
+                <h6 class="text-centred"><b>Number of students in class: {{length}}</b></h6>
+            {% else %}
+                <h1 class="text-centred"><b><u>All Student Records</u></b></h1>
+                <h6 class="text-centred"><b>Number of students in school: {{length}}</b></h6>
+            {% endif %}
+            <div class="user_section">
+                {% for i in range(length) %}
+                    <div class="portfolio">
+                        <div><img src="/static/art/fps/post1.jpg" alt="Sorry could't load the image"></div>
+                        <div>
+                            <div class="Buttons"><b>{{records[i]["class"]}}</b></div>
+                            <div><b>Name</b></div>
+                            <div>{{records[i]["name"].upper()}}</div>
+                            <div><b>Contact-No</b></div>
+                            <div>+{{records[i]["contact_no"]}}</div>
+                            <div><b>Email</b></div>
+                            <div>{{records[i]["email1"]}}</div>
+                            <form action="/records" method="post">
+                                <input type="hidden" name="id" value= '{{records[i]["id"]}}'>
+                                <button class="external_but">Remove Record</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}

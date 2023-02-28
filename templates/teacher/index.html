@@ -1,0 +1,84 @@
+{% extends "layout.html"%}
+
+{% block title %}
+    FPS: Students Progress
+{% endblock %}
+
+{% block main %}
+    <div class="home_section">
+        <div class="text-centred">
+            <h1><u>Progress</u></h1>
+            <h6>Measure progress of students by: </h6>
+        </div>
+        <div class="grade_section">
+            <div class="online">
+                <form action="/s-progress" method="post">
+                    <input type="hidden" value="w-assessment" name="progress">
+                    <button>Weekly-Assesments</button>
+                </form>
+            </div>
+            <div class="online">
+                <form action="/s-progress" method="post">
+                    <input type="hidden" value="evaluation" name="progress">
+                    <button>Evaluation Tests</button>
+                </form>
+            </div>
+            <div class="online">
+                <form action="/s-progress" method="post">
+                    <input type="hidden" value="mid-tests" name="progress">
+                    <button>Mid-Term Tests</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="text-centred">
+            <h4><u>Student's Progress based on {{i}}</u></h4>
+        </div>
+        <br>
+        <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <br>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var array = [];
+        array.push(["Element", "Scores", { role: "style" } ]);
+
+        var scores = {{scores|tojson}};
+        for (let i = 0; i < scores.length; i++)
+        {
+            if (scores[i][{{type|tojson}}] > {{max|tojson}} / 2)
+            {
+                array.push([scores[i]["name"], scores[i][{{type|tojson}}], "green"]);
+            }
+
+            else
+            {
+                array.push([scores[i]["name"], scores[i][{{type|tojson}}], "red"]);
+            }
+        }
+
+        var data = google.visualization.arrayToDataTable(array);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                         { calc: "stringify",
+                           sourceColumn: 1,
+                           type: "string",
+                           role: "annotation" },
+                         2]);
+  
+        var options = {
+          title: "MAX SCORE IS: " + {{max|tojson}},
+          width: 800,
+          height: 300,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+        chart.draw(view, options);
+      }
+    </script>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "layout.html"%}
+
+{% block title %}
+    FPS: Grade Students
+{% endblock %}
+
+{% block main %}
+<div class="about_page">
+    <div class="about_outer">
+        <div class="about">
+            <h1>FRIENDSWOOD PRIVATE SCHOOLS</h1>
+        </div>
+    </div>
+
+    
+    <div class="about_section">
+        <div class="section">
+            <div id="inner">
+                <div>
+                    <br>
+                    <form action="/grading" method="post">
+                        <div class="mb-3">
+                            <h6>What section do you teach*</h6>
+                            <select name="section" id="select" >
+                                <option disabled selected>Section</option>
+                                {% for i in sections %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3" id="pry" hidden>
+                            <h6>What subject do you teach</h6>
+                            <select name="subject">
+                                <option disabled selected>Subject</option>
+                                {% for i in pry_subjects %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3" id="sec" hidden>
+                            <h6>What subject do you teach</h6>
+                            <select name="subject">
+                                <option disabled selected>Subject</option>
+                                {% for i in sec_subjects %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3" id="pry_class" hidden>
+                            <h6>What class do you teach this subject</h6>
+                            <select name="class">
+                                <option disabled selected>Class</option>
+                                {% for i in pry_classes %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3" id="sec_class" hidden>
+                            <h6>What class do you teach this subject</h6>
+                            <select name="class">
+                                <option disabled selected>Class</option>
+                                {% for i in sec_classes %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <h6>What type of test is this</h6>
+                            <select name="test_type">
+                                <option disabled selected>Test Type</option>
+                                {% for i in tests %}
+                                    <option>{{i}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <h6>What branch do you teach this subject</h6>
+                            <input type="number" placeholder="Branch" required name="branch">
+                        </div>
+                        <button class="reg_but">Start Grading</button>
+                    </form>
+                    <br>
+                    <div>
+                        Made a mistake? <a href="">Fix students data</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <span class="section" id="back">
+        </span>   
+    </div>
+</div>
+
+<script>
+    let select = document.querySelector("#select");
+    select.addEventListener("click",function(){
+        if (select.value == "Secondary")
+        {
+            document.querySelector("#pry").hidden = 1;
+            document.querySelector("#pry_class").hidden = 1;
+            document.querySelector("#sec").hidden = 0;
+            document.querySelector("#sec_class").hidden = 0;
+        }
+
+        else if (select.value == "Primary")
+        {
+            document.querySelector("#sec").hidden = 1;
+            document.querySelector("#sec_class").hidden = 1;
+            document.querySelector("#pry").hidden = 0;
+            document.querySelector("#pry_class").hidden = 0;
+        }
+
+        else
+        {
+            document.querySelector("#sec").hidden = 1;
+            document.querySelector("#sec_class").hidden = 1;
+            document.querySelector("#pry").hidden = 1;  
+            document.querySelector("#pry_class").hidden = 1;
+        }
+    });
+</script>
+{% endblock %}
